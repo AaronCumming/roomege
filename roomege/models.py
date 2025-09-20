@@ -20,7 +20,7 @@ class CustomUser(AbstractUser):
     dishes_scenario = models.TextField(null=True, blank=True)
     late_hw = models.TextField(null=True, blank=True)
     relationship_expectation = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to="pictures/")
+    image = models.ImageField(upload_to="pictures/", null=True, blank=True)
 
     @property
     def name(self):
