@@ -7,18 +7,27 @@
 <main class="w-full min-h-screen flex flex-col items-center justify-start pt-10 pb-10 bg-black">
     <h1 class="text-4xl font-bold text-white mb-8 text-center">Top 25 Matches</h1>
 
-    <div class="w-full max-w-3xl flex flex-col gap-4">
+    <!-- Responsive grid -->
+    <div class="w-full max-w-6xl grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-4">
         {% for user in matches_list %}
-            <a href="{% url 'roomege:profile' user.pk %}" class="block">
-                <div class="bg-gray-800 text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition-colors cursor-pointer">
-                    <h2 class="text-2xl font-semibold">{{ user.first_name }} {{ user.last_name }}</h2>
+        <a href="{% url 'roomege:profile' user.pk %}" class="block">
+            <div class="bg-gray-800 text-white rounded-lg shadow-md hover:bg-gray-700 transition-colors flex flex-col sm:flex-row items-center sm:items-start p-4">
+                
+                <!-- Text on the left -->
+                <div class="flex-1 sm:pr-4">
+                    <h2 class="text-xl font-semibold">{{ user.first_name }} {{ user.last_name }}</h2>
                     <p class="mt-1 text-gray-300">Age: {{ user.age }} | Grade: {{ user.grade }}</p>
-                    <p class="mt-1 text-gray-300">City: {{ user.city }}, State: {{ user.state }}</p>
+                    <p class="mt-1 text-gray-300">City: {{ user.city }}, {{ user.state }}</p>
                     <p class="mt-1 text-gray-300">Religion: {{ user.religion }}</p>
                 </div>
-            </a>
+
+                <!-- Picture on the right -->
+                <div class="mt-4 sm:mt-0 sm:ml-auto flex-shrink-0">
+                    <img src="{% static 'images/picture.jpg' %}"  alt="{{ user.first_name }}" class="w-24 h-24 rounded-full object-cover border-2 border-gray-600">
+                </div>
+            </div>
+        </a>
         {% endfor %}
     </div>
 </main>
-
 {% endblock content %}

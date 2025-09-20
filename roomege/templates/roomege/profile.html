@@ -1,11 +1,67 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 {% include "header.html" %}
-{% load static %}
-<main class="w-screen flex flex-col items-center pt-10 pb-10">
 
-    <h2>Hello {{ user.name }}!</h2>
+<main class="w-full min-h-screen flex flex-col items-center bg-black py-10 px-4">
+    
+    <!-- Back Button -->
+    <div class="w-full max-w-3xl mb-6 flex justify-center">
+        <a href="{% url 'roomege:matches' %}" 
+           class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-500 transition-colors">
+            Back to Matches
+        </a>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="w-full max-w-3xl bg-gray-900 text-white rounded-lg shadow-lg p-8 flex flex-col items-center">
+        {% if profile_user.image %}
+            <img src="{% static 'images/picture.jpg' %}" alt="{{ profile_user.name }}" class="w-32 h-32 rounded-full object-cover mb-4 border-4 border-gray-700">
+        {% endif %}
+        <h1 class="text-3xl font-bold mb-2">{{ profile_user.name }}</h1>
+        <p class="text-gray-300 mb-1">{{ profile_user.age }} years old | Grade: {{ profile_user.grade }}</p>
+        <p class="text-gray-300 mb-1">{{ profile_user.city }}, {{ profile_user.state }}</p>
+        <p class="text-gray-300 mb-1">Gender: {{ profile_user.gender }}</p>
+        <p class="text-gray-300 mb-1">Religion: {{ profile_user.religion }}</p>
+        <p class="text-gray-300 mb-1">Church: {{ profile_user.church }}</p>
+
+        <!-- Room and Habits -->
+        <div class="mt-4 w-full bg-gray-800 p-4 rounded-lg">
+            <h2 class="text-xl font-semibold mb-2">Room & Habits</h2>
+            <p class="text-gray-300 mb-1">Bedtime: {{ profile_user.bedtime }}</p>
+            <br><p class="text-gray-300 mb-1">Wake time: {{ profile_user.waketime }}</p>
+            <br><p class="text-gray-300 mb-1">How clean your room right now? <br><li>{{ profile_user.room_state }}/10</p>
+            <br><p class="text-gray-300 mb-1">Do you like your living space to be a social area? <br><li>{{ profile_user.social_area }}</p>
+            <br><p class="text-gray-300 mb-1">How often and how late do you stay up doing home work? <br><li>{{ profile_user.late_hw }}</p>
+            <br><p class="text-gray-300 mb-1">Dilemma: It's 1am.  You just finished eating and have several sirty dishes. You also have an 8am class tomorrow. What do you do? <br><li>{{ profile_user.dishes_scenario }}</p>
+            <br><p class="text-gray-300 mb-1">What kind of relationship do you expect to have with your roomate? <br><li>{{ profile_user.relationship_expectation }}</p>
+        </div>
+    </div>
+
+    <!-- Socials -->
+    <div class="w-full max-w-3xl mt-8">
+        <h2 class="text-2xl font-bold text-white mb-4 text-center">Social Links</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+            {% for social in profile_user.socials.all %}
+                <a href="{{ social.link_address }}" target="_blank" class="bg-gray-800 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-700 transition-colors">
+                    {{ social.name }}
+                </a>
+            {% empty %}
+                <p class="text-gray-400 text-center w-full">No social links available.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <!-- Back Button -->
+    <div class="w-full max-w-3xl mb-6 flex justify-center">
+        <a href="{% url 'roomege:matches' %}" 
+           class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-500 transition-colors">
+            Back to Matches
+        </a>
+    </div>
 
 
 

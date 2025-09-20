@@ -16,10 +16,10 @@ class CustomUser(AbstractUser):
     church = models.CharField(max_length=127, null=True, blank=True)
     bedtime = models.TimeField(null=True, blank=True)
     waketime = models.TimeField(null=True, blank=True)
-    room_state = models.IntegerField(null=True, blank=True, verbose_name = "How clean your room right now? (on a scale of 1-10)")
+    room_state = models.IntegerField(null=True, blank=True, verbose_name = "How clean is your room right now? (on a scale of 1-10)")
     social_area = models.CharField(max_length=127, null=True, blank=True, verbose_name = "Do you like your living space to be a social area?")
     dishes_scenario = models.TextField(null=True, blank=True, 
-            verbose_name = "Dilemma: It's 1am.  You just finished eating and have several sirty dishes. You also have an 8am class tomorrow. What do you do?")
+            verbose_name = "Dilemma: It's 1am.  You just finished eating and have several dirty dishes. You also have an 8am class tomorrow. What do you do?")
     late_hw = models.TextField(null=True, blank=True, verbose_name ="How often and how late do you stay up doing home work?")
     relationship_expectation = models.TextField(null=True, blank=True, 
             verbose_name = "What kind of relationship do you expect to have with your roomate? Explain.")
@@ -28,8 +28,14 @@ class CustomUser(AbstractUser):
 
     @property
     def name(self):
-        """ Displays the name of the user. """
-        return self.first_name + " " + self.last_name
+        """Displays the name of the user, falls back safely if blank."""
+        if self.first_name and self.last_name:
+            return f"{self.first_name} {self.last_name}"
+        elif self.first_name:
+            return self.first_name
+        elif self.last_name:
+            return self.last_name
+        return "Unnamed User"
 
     def __str__(self):
         return self.name

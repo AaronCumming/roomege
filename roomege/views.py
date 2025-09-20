@@ -16,13 +16,14 @@ class ProfileView(generic.DetailView):
     """Displays profile."""
     model = CustomUser
     template_name = "roomege/profile.html"
+    context_object_name = "profile_user" 
 
 
 class CreateUserView(generic.CreateView):
     """User can create a parent chirp."""
     model = CustomUser
     fields = [
-        'first_name', 'last_name', 'age', 'grade', 'city', 'state',
+        'username', 'password', 'email', 'first_name', 'last_name', 'age', 'grade', 'city', 'state',
         'religion', 'church', 'bedtime', 'waketime', 'room_state', 'social_area',
         'dishes_scenario', 'late_hw', 'relationship_expectation', 'image'
     ]

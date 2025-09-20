@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% include "header.html" %}
+
+<main class="w-full min-h-screen flex flex-col items-center justify-start pt-10 pb-10 bg-black">
+    <h1 class="text-4xl font-bold text-white mb-8 text-center">Top 25 Matches</h1>
+
+    <div class="w-full max-w-3xl flex flex-col gap-4">
+        {% for user in matches_list %}
+            <a href="{% url 'roomege:profile' user.pk %}" class="block">
+                <div class="bg-gray-800 text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition-colors cursor-pointer">
+                    <h2 class="text-2xl font-semibold">{{ user.first_name }} {{ user.last_name }}</h2>
+                    <p class="mt-1 text-gray-300">Age: {{ user.age }} | Grade: {{ user.grade }}</p>
+                    <p class="mt-1 text-gray-300">City: {{ user.city }}, State: {{ user.state }}</p>
+                    <p class="mt-1 text-gray-300">Religion: {{ user.religion }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</main>
+
+{% endblock content %}
