@@ -23,8 +23,8 @@ class CreateUserView(generic.CreateView):
     model = CustomUser
     fields = [
         'first_name', 'last_name', 'age', 'grade', 'city', 'state',
-        'religion', 'church', 'bedtime', 'waketime', 'social_area',
+        'religion', 'church', 'bedtime', 'waketime', 'room_state', 'social_area',
         'dishes_scenario', 'late_hw', 'relationship_expectation', 'image'
     ]
     template_name = "roomege/create_profile.html"
-    success_url = reverse_lazy("roomege:home")
+    success_url = reverse_lazy("roomege:matches")

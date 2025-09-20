@@ -1,14 +1,37 @@
 {% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
 
 {% block content %}
 {% include "header.html" %}
-{% load static %}
-<main class="w-screen flex flex-col items-center pt-10 pb-10">\
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}  <!-- Render form fields as paragraphs -->
-        <button type="submit">Save</button>
-    </form> 
+
+<main class="w-full max-w-3xl mx-auto mt-8 mb-8 p-6 bg-white rounded shadow">
+    <h2 class="text-2xl font-bold mb-6 text-center">Create Your Profile</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div class="flex flex-col mb-4">
+            <label class="font-semibold mb-1" for="{{ field.id_for_label }}">
+                {{ field.label }}{% if field.field.required %} *{% endif %}
+            </label>
+            
+            {{ field|add_class:"border border-gray-400 rounded p-2" }}
+            
+            {% if field.help_text %}
+                <p class="text-sm text-gray-500">{{ field.help_text }}</p>
+            {% endif %}
+            
+            {% for error in field.errors %}
+                <p class="text-red-600 text-sm">{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="bg-blue-600 text-white rounded px-4 py-2 mt-4">
+        <p><input type="submit" class="save" value="Save"></p>
+    </button>
+</form>
 </main>
 {% endblock content %}
-

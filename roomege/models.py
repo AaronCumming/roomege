@@ -4,22 +4,24 @@ from django import forms
 
 
 class CustomUser(AbstractUser):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    placed = models.BooleanField(default=False)
+    first_name = models.CharField(max_length=255, null=True, blank=True)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
+    placed = models.BooleanField(default=False, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True)
-    grade = models.CharField(max_length=127)
-    city = models.CharField(max_length=127)
-    state = models.CharField(max_length=127)
+    grade = models.CharField(max_length=127, null=True, blank=True)
+    city = models.CharField(max_length=127, null=True, blank=True)
+    state = models.CharField(max_length=127, null=True, blank=True)
     religion = models.CharField(max_length=127, null=True, blank=True)
     church = models.CharField(max_length=127, null=True, blank=True)
     bedtime = models.TimeField(null=True, blank=True)
     waketime = models.TimeField(null=True, blank=True)
-    room_state = models.IntegerField(null=True, blank=True)
-    social_area = models.CharField(max_length=127, null=True, blank=True)
-    dishes_scenario = models.TextField(null=True, blank=True)
-    late_hw = models.TextField(null=True, blank=True)
-    relationship_expectation = models.TextField(null=True, blank=True)
+    room_state = models.IntegerField(null=True, blank=True, verbose_name = "How clean your room right now? (on a scale of 1-10)")
+    social_area = models.CharField(max_length=127, null=True, blank=True, verbose_name = "Do you like your living space to be a social area?")
+    dishes_scenario = models.TextField(null=True, blank=True, 
+            verbose_name = "Dilemma: It's 1am.  You just finished eating and have several sirty dishes. You also have an 8am class tomorrow. What do you do?")
+    late_hw = models.TextField(null=True, blank=True, verbose_name ="How often and how late do you stay up doing home work?")
+    relationship_expectation = models.TextField(null=True, blank=True, 
+            verbose_name = "What kind of relationship do you expect to have with your roomate? Explain.")
     image = models.ImageField(upload_to="pictures/", null=True, blank=True)
 
     @property
