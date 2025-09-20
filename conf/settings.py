@@ -139,4 +139,4 @@ LOGIN_REDIRECT_URL = reverse_lazy("roomege:home")
 ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy("account_login")
 ACCOUNT_SIGNUP_REDIRECT_URL = reverse_lazy("roomege:home")
 
-AUTH_USER_MODEL = "accounts.CustomUser"
+AUTH_USER_MODEL = "roomege.CustomUser"
