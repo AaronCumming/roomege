@@ -4,22 +4,23 @@ from django import forms
 
 
 class CustomUser(AbstractUser):
-    first_name = models.CharField(max_length=255, null=False, blank=False)
-    last_name = models.CharField(max_length=255, null=False, blank=False)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
     placed = models.BooleanField(default=False)
-    age = models.IntegerField(null=False, blank=False)
-    grade = models.CharField(max_length=127, null=False, blank=False)
+    age = models.IntegerField(null=True, blank=True)
+    grade = models.CharField(max_length=127)
     city = models.CharField(max_length=127)
     state = models.CharField(max_length=127)
-    religion = models.CharField(max_length=127)
-    church = models.CharField(max_length=127)
-    bedtime = models.TimeField()
-    waketime = models.TimeField()
-    room_state = models.IntegerField()
-    social_area = models.CharField(max_length=127)
-    dishes_scenario = models.TextField()
-    late_hw = models.TextField()
-    relationship_expectation = models.TextField()
+    religion = models.CharField(max_length=127, null=True, blank=True)
+    church = models.CharField(max_length=127, null=True, blank=True)
+    bedtime = models.TimeField(null=True, blank=True)
+    waketime = models.TimeField(null=True, blank=True)
+    room_state = models.IntegerField(null=True, blank=True)
+    social_area = models.CharField(max_length=127, null=True, blank=True)
+    dishes_scenario = models.TextField(null=True, blank=True)
+    late_hw = models.TextField(null=True, blank=True)
+    relationship_expectation = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to="pictures/")
 
     @property
     def name(self):
