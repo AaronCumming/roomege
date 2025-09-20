@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "header.html" %}
+{% load static %}
+<main class="w-screen flex flex-col items-center pt-10 pb-10">\
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Render form fields as paragraphs -->
+        <button type="submit">Save</button>
+    </form> 
+</main>
+{% endblock content %}
+
