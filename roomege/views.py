@@ -28,3 +28,13 @@ class CreateUserView(generic.CreateView):
     ]
     template_name = "roomege/create_profile.html"
     success_url = reverse_lazy("roomege:matches")
+
+
+class MatchesView(generic.ListView):
+    """Displays the all matches."""
+    template_name = "roomege/matches.html"
+    context_object_name = "matches_list"
+
+    def get_queryset(self):
+        """Return a list of matched users."""
+        return CustomUser.objects.all()

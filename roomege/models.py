@@ -7,6 +7,7 @@ class CustomUser(AbstractUser):
     first_name = models.CharField(max_length=255, null=True, blank=True)
     last_name = models.CharField(max_length=255, null=True, blank=True)
     placed = models.BooleanField(default=False, null=True, blank=True)
+    gender = models.CharField(max_length=127, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True)
     grade = models.CharField(max_length=127, null=True, blank=True)
     city = models.CharField(max_length=127, null=True, blank=True)
@@ -35,7 +36,7 @@ class CustomUser(AbstractUser):
     class Meta:
         verbose_name = "User"
         verbose_name_plural = "Users"
-        ordering = ["grade", "last_name", "first_name", "age"]
+        ordering = ["gender", "grade", "last_name", "first_name", "age"]
 
 
 class ProfileForm(forms.ModelForm):
