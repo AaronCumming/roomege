@@ -16,3 +16,15 @@ class ProfileView(generic.DetailView):
     """Displays profile."""
     model = CustomUser
     template_name = "roomege/profile.html"
+
+
+class CreateUserView(generic.CreateView):
+    """User can create a parent chirp."""
+    model = CustomUser
+    fields = [
+        'first_name', 'last_name', 'age', 'grade', 'city', 'state',
+        'religion', 'church', 'bedtime', 'waketime', 'social_area',
+        'dishes_scenario', 'late_hw', 'relationship_expectation', 'image'
+    ]
+    template_name = "roomege/create_profile.html"
+    success_url = reverse_lazy("roomege:home")
