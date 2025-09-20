@@ -24,6 +24,7 @@ class CustomUser(AbstractUser):
     relationship_expectation = models.TextField(null=True, blank=True, 
             verbose_name = "What kind of relationship do you expect to have with your roomate? Explain.")
     image = models.ImageField(upload_to="pictures/", null=True, blank=True)
+    matches = models.ManyToManyField('self', related_name="match_lists", symmetrical=False, blank=True)
 
     @property
     def name(self):
