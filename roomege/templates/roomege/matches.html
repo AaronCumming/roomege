@@ -9,16 +9,14 @@
 
     <div class="w-full max-w-3xl flex flex-col gap-4">
         {% for user in matches_list %}
-            <div class="bg-gray-800 text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition-colors">
-                <h2 class="text-2xl font-semibold">{{ user.first_name }} {{ user.last_name }}</h2>
-                <p class="mt-1 text-gray-300">Age: {{ user.age }} | Grade: {{ user.grade }}</p>
-                <p class="mt-1 text-gray-300">City: {{ user.city }}, State: {{ user.state }}</p>
-                <p class="mt-1 text-gray-300">Religion: {{ user.religion }}</p>
-            </div>
-        {% empty %}
-            <div class="bg-gray-800 text-white p-6 rounded-lg shadow-md text-center">
-                No matches found.
-            </div>
+            <a href="{% url 'roomege:profile' user.pk %}" class="block">
+                <div class="bg-gray-800 text-white p-6 rounded-lg shadow-md hover:bg-gray-700 transition-colors cursor-pointer">
+                    <h2 class="text-2xl font-semibold">{{ user.first_name }} {{ user.last_name }}</h2>
+                    <p class="mt-1 text-gray-300">Age: {{ user.age }} | Grade: {{ user.grade }}</p>
+                    <p class="mt-1 text-gray-300">City: {{ user.city }}, State: {{ user.state }}</p>
+                    <p class="mt-1 text-gray-300">Religion: {{ user.religion }}</p>
+                </div>
+            </a>
         {% endfor %}
     </div>
 </main>
